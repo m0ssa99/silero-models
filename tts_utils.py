@@ -24,7 +24,8 @@ def init_jit_model(model_url: str,
 
 def prepare_text_input(text, symbols, symbol_to_id=None):
     if len(text) > 140:
-        warnings.warn('Text string is longer than 140 symbols.')
+        print(len(text))
+        #warnings.warn('Text string is longer than 140 symbols.')
 
     if symbol_to_id is None:
         symbol_to_id = {s: i for i, s in enumerate(symbols)}
@@ -37,7 +38,9 @@ def prepare_text_input(text, symbols, symbol_to_id=None):
     text = text + symbols[1]
 
     text_ohe = [symbol_to_id[s] for s in text if s in symbols]
+    
     text_tensor = torch.LongTensor(text_ohe)
+    print(text_tensor)
     return text_tensor
 
 
